@@ -3,13 +3,12 @@ import Layout from '../components/Layout';
 
 
 
-const Index = () => {
+const Login = () => {
   return ( 
     <Layout>
-        <h1>Index</h1>
+        <h1>Login</h1>
     </Layout>
    );
 }
  
-export default Index;
-
+export default Login;
