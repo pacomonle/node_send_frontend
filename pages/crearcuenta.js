@@ -1,9 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import Layout from '../components/Layout'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import authContext from '../context/auth/authContext';
+import Alerta from '../components/Alerta';
 
 const CrearCuenta = () => {
+
+// acceder al state
+const AuthContext = useContext(authContext);
+const { registrarUsuario, mensaje } = AuthContext;
+
 
 // formualrio y validaacion con formik y Yup
 const formik = useFormik({
@@ -23,7 +30,8 @@ const formik = useFormik({
                   .min(6, 'El password debe tener al meno 6 caracteres')
     }),
     onSubmit: (valores)=>{
-        console.log('enviando formulario', valores);
+      //  console.log('enviando formulario', valores);
+        registrarUsuario(valores);
     }
 })
 
@@ -34,6 +42,7 @@ const formik = useFormik({
                 <h2 className='text-4xl font-sans font-bold text-center text-gray-800'>
                     Crear Cuenta
                 </h2>
+                { mensaje && <Alerta/> }
                 <div className='flex justify-center mt-5'>
                     <div className='w-full max-w-lg'>
                         <form
