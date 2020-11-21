@@ -1,10 +1,32 @@
-import React from 'react'
+import React, { useContext, useEffect } from 'react'
 import Layout from '../components/Layout'
 import { useFormik } from 'formik'
 import * as Yup from 'yup'
+import authContext from '../context/auth/authContext'
+import Alerta from '../components/Alerta'
+import { useRouter } from 'next/router';
+
 
 
 const Login = () => {
+
+   // acceder al state
+   const AuthContext = useContext(authContext);
+   const { iniciarSesion, mensaje, autenticado } = AuthContext;
+
+   // NextJS Router
+   const router = useRouter();
+   // console.log(router);
+
+   useEffect(() => {
+
+   if(autenticado){
+       router.push('/');
+   }
+     return () => {
+       
+     };
+   }, [autenticado])
 
   // formualrio y validaacion con formik y Yup
   const formik = useFormik({
@@ -20,17 +42,19 @@ const Login = () => {
                     .required('El password es obligatorio')
       }),
       onSubmit: (valores)=>{
-          console.log('enviando formulario', valores);
+         // console.log('enviando formulario', valores);
+          iniciarSesion(valores);
       }
   })
 
   return ( 
     <Layout>
-        
+            { /* autenticado ? <redirect to ='/index' /> : null */}
             <div className='md:w-4/5 xl:w-3/5 mx-auto mb-32'>
                 <h2 className='text-4xl font-sans font-bold text-center text-gray-800'>
                     Crear Cuenta
                 </h2>
+                { mensaje && <Alerta/> }
                 <div className='flex justify-center mt-5'>
                     <div className='w-full max-w-lg'>
                         <form
