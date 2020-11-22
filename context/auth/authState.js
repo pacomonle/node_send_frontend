@@ -102,7 +102,7 @@ const AuthState = ({children}) => {
 
         try {
             const respuesta = await clienteAxios.get('/api/auth');
-            console.log(respuesta);
+           // console.log(respuesta);
             dispatch({
                 type: USUARIO_AUTENTICADO,
                 payload: respuesta.data.usuario
