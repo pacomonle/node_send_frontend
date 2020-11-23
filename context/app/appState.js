@@ -6,6 +6,7 @@ import clienteAxios from '../../config/axios';
 import tokenAuth from '../../config/tokenAuth';
 import {
      CREAR_ENLACE_EXITO,
+     LIMPIAR_STATE,
      MOSTRAR_ALERTA, 
      OCULTAR_ALERTA,
      SUBIR_ARCHIVO,
@@ -98,6 +99,12 @@ const crearEnlace = async() => {
     }
 }
 
+const limpiarState = async() =>{
+    dispatch({
+        type: LIMPIAR_STATE
+    })
+}
+
 
     return (
       <appContext.Provider
@@ -112,7 +119,8 @@ const crearEnlace = async() => {
           url: state.url,
           mostrarAlerta,
           subirArchivo,
-          crearEnlace
+          crearEnlace,
+          limpiarState
       }}>
           {children}
       </appContext.Provider>
