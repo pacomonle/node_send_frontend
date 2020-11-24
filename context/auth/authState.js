@@ -21,11 +21,14 @@ const AuthState = ({children}) => {
     // Definir state initial
 
    const initialState = {
-       token: typeof window != 'undefined' ? localStorage.getItem('token') : '',
-       autenticado: null,
+       token: typeof window !== 'undefined' ? localStorage.getItem('token') : '',
+       autenticado: false,
        usuario: null,
-       mensaje: null
+       mensaje: null,
+       cargando: null
    }
+
+  
 
     // Definir el reducer
    const [state, dispatch] = useReducer(authReducer, initialState)
@@ -103,10 +106,13 @@ const AuthState = ({children}) => {
         try {
             const respuesta = await clienteAxios.get('/api/auth');
            // console.log(respuesta);
-            dispatch({
-                type: USUARIO_AUTENTICADO,
-                payload: respuesta.data.usuario
-            })
+           if(respuesta.data.usuario){
+                dispatch({
+                    type: USUARIO_AUTENTICADO,
+                    payload: respuesta.data.usuario
+                })
+           }
+           
         } catch (error) {
             console.log(error.response);
             dispatch({

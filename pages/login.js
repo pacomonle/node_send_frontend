@@ -19,7 +19,7 @@ const Login = () => {
    // console.log(router);
 
    useEffect(() => {
-
+  console.log(autenticado)
    if(autenticado){
        router.push('/');
    }
@@ -52,7 +52,7 @@ const Login = () => {
             { /* autenticado ? <redirect to ='/index' /> : null */}
             <div className='md:w-4/5 xl:w-3/5 mx-auto mb-32'>
                 <h2 className='text-4xl font-sans font-bold text-center text-gray-800'>
-                    Crear Cuenta
+                    LOGIN
                 </h2>
                 { mensaje && <Alerta/> }
                 <div className='flex justify-center mt-5'>

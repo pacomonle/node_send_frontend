@@ -19,12 +19,19 @@ const Index = () => {
 
   // Extraer el Usuario autenticado del Storage 
   const AuthContext = useContext(authContext);
-  const { usuarioAutenticado } = AuthContext;
+  const { usuarioAutenticado, autenticado } = AuthContext;
 
 
 
  useEffect(() => {
-  usuarioAutenticado();
+   // autenticar al usuario
+   const token = localStorage.getItem('token');
+   console.log(autenticado)
+   console.log(token)
+   if(token){
+    usuarioAutenticado();
+   }
+  
    return () => {
      
    }

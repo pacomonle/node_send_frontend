@@ -1,9 +1,16 @@
 import React, { useCallback, useContext } from 'react';
 import { useDropzone } from 'react-dropzone';
 
+import Formulario from './Formulario';
+
 import appContext from '../context/app/appContext';
+import authContext from '../context/auth/authContext';
+
 
 const Dropzone = () => {
+    // state usuario autenticado
+    const AuthContext = useContext(authContext);
+    const { usuario , autenticado } = AuthContext;
 
     // recuperar el state
     const AppContext = useContext(appContext);
@@ -55,6 +62,9 @@ const Dropzone = () => {
                  <ul>
                      { archivos }
                 </ul>
+                {
+                    autenticado ? <Formulario /> : null
+                }
                 { cargando ? <p className='my-10 text-center text-gray-600'>Subiendo Archivo ...</p> : (
                      <button 
                         type="button" 

@@ -1,5 +1,7 @@
 
 import { 
+    AGREGAR_DESCARGAS,
+    AGREGAR_PASSWORD,
     CREAR_ENLACE_EXITO,
     LIMPIAR_STATE,
     MOSTRAR_ALERTA,
@@ -57,6 +59,16 @@ export default (state, action) =>{
                 password: '',
                 autor: null,
                 url: ''
+            }
+        case AGREGAR_PASSWORD:
+            return {
+                ...state,
+                password: action.payload
+            }
+        case AGREGAR_DESCARGAS:
+            return {
+                ...state,
+                descargas: action.payload
             }
         default:
             return state;

@@ -14,7 +14,7 @@ const Header = () => {
 
   // Extraer el Usuario autenticado del Storage 
   const AuthContext = useContext(authContext);
-  const { cerrarSesion, usuarioAutenticado, usuario } = AuthContext;
+  const { cerrarSesion, usuarioAutenticado, usuario, autenticado } = AuthContext;
 
   useEffect(() => {
     usuarioAutenticado();
@@ -28,6 +28,14 @@ const Header = () => {
        router.push('/');
        limpiarState();
    }
+
+ const logout = () =>{
+       redireccionar();
+       cerrarSesion();
+       
+        console.log(autenticado)
+       
+   } 
 
     return (
         <header className='py-8 flex flex-col md:flex-row items-center justify-between'>
@@ -46,7 +54,7 @@ const Header = () => {
                             <button 
                                 type="button"
                                 className="bg-black px-5 py-3 rounded-lg text-white font-bold uppercase"
-                                onClick={() => cerrarSesion() }
+                                onClick={ logout }
                             >Cerrar Sesión</button>
                  </div>)
                 : 

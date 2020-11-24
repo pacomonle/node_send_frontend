@@ -5,6 +5,8 @@ import appReducer from './appReducer';
 import clienteAxios from '../../config/axios';
 import tokenAuth from '../../config/tokenAuth';
 import {
+    AGREGAR_DESCARGAS,
+     AGREGAR_PASSWORD,
      CREAR_ENLACE_EXITO,
      LIMPIAR_STATE,
      MOSTRAR_ALERTA, 
@@ -105,6 +107,23 @@ const limpiarState = async() =>{
     })
 }
 
+// Agregar Password
+const agregarPassword = ( password ) =>{
+   // console.log(password)
+    dispatch({
+        type: AGREGAR_PASSWORD,
+        payload: password
+    })
+}
+
+// agregar numero de descargas
+const agregarDescargas = ( descargas ) =>{
+   // console.log(descargas)
+    dispatch({
+        type: AGREGAR_DESCARGAS,
+        payload: descargas
+    })
+}
 
     return (
       <appContext.Provider
@@ -120,7 +139,9 @@ const limpiarState = async() =>{
           mostrarAlerta,
           subirArchivo,
           crearEnlace,
-          limpiarState
+          limpiarState,
+          agregarPassword,
+          agregarDescargas
       }}>
           {children}
       </appContext.Provider>

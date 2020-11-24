@@ -40,17 +40,18 @@ export default (state, action) => {
            return {
                ...state,
                usuario: action.payload,
+               autenticado: true
            };
 
         case CERRAR_SESION:
             
             localStorage.removeItem('token');
+           // console.log('autenticado', state)
             return {
                 ...state,
                 usuario: null, 
                 token: null,
-                autenticado: null,
-
+                autenticado: false
             }
     
         default:
